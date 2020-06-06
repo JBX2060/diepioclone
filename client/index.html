@@ -1,0 +1,1725 @@
+
+
+<head>
+  
+  
+  <link rel="icon" type="image/png" href="https://diep.io/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="https://diep.io/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="https://diep.io/favicon-16x16.png" sizes="16x16">
+<link rel="mask-icon" href="https://diep.io/safari-pinned-tab.svg" color="#5bbad5">
+<title>Community diep.io</title>
+<meta name="description" content="Survive and shoot at others while trying to keep your own tank alive!">
+ <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-89531694-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ <style>
+ 
+ #changelog{
+   cursor:pointer;
+   color:skyblue;
+   background-color:#4286f4;
+ }
+ 
+  img{
+    display:none;
+  }
+  
+  #signDiv{
+    background: url('https://diep.io/title.png');
+    background-size : 100% auto;
+  }
+  
+  #chat{
+    position:absolute;
+    display:inline-block;
+    margin-top:-160px;
+    width:500px;
+    opacity:0.8;
+  }
+  
+  #chat-input{
+    height:35px;
+    margin-top:-15;
+    
+  }
+  
+  .upgradedetect {
+  width: 128px;
+  height: 128px; 
+  border: none;
+  color: black;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  background: rgba(255,255,255,0);
+  outline:0;
+}
+  
+   
+ .form-control{
+     
+     -ms-transform: scale(1.5); 
+    -webkit-transform: scale(1.5); 
+    transform: scale(1.5);
+ }
+  
+  
+  #scoreboard-content{
+    background-color:rgba(210,210,210,0.7);
+  position:absolute;
+    display:inline;
+    color:white;
+    
+    
+     
+  }
+  
+  #actual-leaders{
+    font-size:20px;
+    font-family: 'Ubuntu';
+  }
+  
+  
+ h1{
+     margin-top:5%;
+     font-size:47px;
+     
+ }
+  
+</style>
+
+
+
+
+<center>
+<div id="signDiv">
+ <h1>Enter your name</h1>
+ <input class:"" id="signDiv-username" type="text" maxlength="16"></input><br/><br/><br/>
+ 
+
+ 
+ <!--<h2>Choose your class</h2>-->
+<!--- <input type="checkbox" id="darktheme" value="dark">Dark Theme<br>
+<script>
+   window.onclick = function(){
+     if(document.getElementById('darktheme').checked){
+       document.getElementById('ctx').style = "background: url('http://i.imgur.com/lKxcO1Y.png')";
+     } else {
+       document.getElementById('ctx').style = "background: url('http://i.imgur.com/gTbTBXZ.png')";
+     }
+   } </script> -->
+ 
+ <link href="https://fonts.googleapis.com/css?family=Ubuntu:700" rel="stylesheet" type="text/css">
+ <!--<select id="choose-tank">
+   <option value="Tank">Tank</option>
+   <option value="Twin">Twin (two barrels for the price of one!)</option>
+   <option value="Twin Flank">Twin Flank (double the Twin in every side!)</option>
+   <option value="Flank Guard">Flank Guard (an extra barrel to protect your back)</option>
+   <option value="Destroyer Flank">Destroyer Flank (your Flank Guard just got wider barrels)</option>
+   <option value="Sniper">Sniper (more bullet range, less reload)</option>
+    <option value="Unsniper">Unsniper (less bullet range)</option> 
+   <option value="MachineGun">Machine Gun (higher reload rate, less damage)</option>
+   <option value="Destroyer">Destroyer (strong bullets, slower reload rate)</option>
+   <option value="Hybrid">Hybrid (Disclaimer: no drones yet.)</option>
+   <option value="Speed">Speed (faster movement speed)</option>
+   <option value="Weighted">Weighted (more health)</option>
+   <option value="Quad Tank">Quad Tank (four barrels in each cardinal direction)</option>
+   <option value="Fighter">Fighter (fast tank with 4 barrels)</option>
+   <option value="Octo Tank">Octo Tank (eight barrels in each cardinal and intermediate direction)</option>
+   <option value="Streamliner">Streamliner (super high reload rate)</option>
+   <option value="Triple Shot">Triple Shot (three shots in a cone)</option>
+   <option value="Horizon">Horizon (five shots in a cone)</option>
+   <option value="Drifter">Drifter (slippery pengiun tank)</option>
+   <option value="Invis">Invisible (cannot be seen, of course, nerfed today!, technically Stalker?)</option> -->
+   <!--<option value="Unsniper">Unsniper (less bullet range)</option>
+   <option value="Dominator">Dominator (technically not a real class once we do ugprades)</option>
+   <option value="Unstoppable">Unstoppable (in motion)</option>
+ </select><br/><br/><br/>-->
+ <select id='server'>
+   <!--<option value='select'>PLAY NOW</option>-->
+   <option value=''>Select One!</option>
+   <option value='ffa'>Classic FFA</option>
+   <!--<option value='dev'>Expiremental (just like Agar.io's!)</option>
+   <option value='tdm'>2 Teams</option>
+   <option value='fdm'>4 Teams</option>
+   <option value='tag'>Tag (not implemented)</option> -->
+ </select><br><br><br>
+  <button class="btn-lg btn-default" id="play">Play</button><br><br>
+  <br>
+  <a style='background-color:white;' href='https://www.reddit.com/user/PixelNexus'>Thank you, /u/PixelNexus, for donating $36 to support development of this project!</a><br>
+  <iframe src="https://discordapp.com/widget?id=261614766227718146&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"></iframe>
+  <hr>
+  <div style='font:monospaced;'><h3>Changelog</h3><br>December 26, 2016:<br>* Added classes!<br>  * Speed class with higher speed<br>  * Machine Gun class with higher reload<br>  * Sniper class with longer lasting bullets<br>  * Unsniper class with shorter lasting bullets<br>* Dev name color<br>  * The devs now have a different color<br>* Added \/u\/haykam821<br>  * Is Dev-type and Normal-type<br>  * 100% IVs</div>
+<hr>
+</center> 
+</div>
+<div id="gameDiv">
+  
+  <!-- The upgrade detection! -->
+  <button class="upgradedetect" style="position: absolute; left: 10px; top: 90px"></button>
+  <button class="upgradedetect" style="position: absolute; left: 10px; top: 228px"></button>
+  <button class="upgradedetect" style="position: absolute; left: 150px; top: 228px"></button>
+   <button class="upgradedetect" style="position: absolute; left: 150px; top: 90px"></button>
+<!-- <div id="changelog">Changelog</div> -->
+<div id="scoreboard-content" style="width:200px;height:400px;border:1px solid black;text-align:center;"><h2>Leaderboard:</h2><div id="actual-leaders"></div></div>
+<canvas id="ctx" width="500" height="500" style="border:1px solid #000000;"></canvas>
+<div id="chat">
+ 
+<div id="chat-text" style="width:500px;height:100px;overflow-y:scroll;border:1px solid black;background-color:lightgray;">
+  <div>This is the beginning of the chat!</div>
+</div><br>
+<form id="chat-form">
+<input id="chat-input" placeholder="Chat here..." type="text" style="width:500px;margin:0px auto;" maxlength="200"></input> 
+</form>
+</div>
+</div>
+</div>
+
+
+
+
+
+<script   src="https://code.jquery.com/jquery-3.1.1.js"   integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="   crossorigin="anonymous"></script>
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+<script src='https://cdn.rawgit.com/showdownjs/showdown/1.5.4/dist/showdown.min.js'></script>
+<script>
+document.getElementsByClassName('upgradedetect')[0].style.display = 'none';
+document.getElementsByClassName('upgradedetect')[1].style.display = 'none';
+document.getElementsByClassName('upgradedetect')[2].style.display = 'none';
+document.getElementsByClassName('upgradedetect')[3].style.display = 'none';
+
+function isMobile(){
+var mobile = false;
+if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+  mobile = true;
+}
+return mobile; 
+}
+
+if (isMobile()){
+  alert('It looks likes you\'re on mobile. For the best experience, play on your PC.')
+}
+
+
+
+document.getElementsByClassName('upgradedetect')[0].onclick = function(){
+  Player.list[selfId].canUpgrade = false;
+  Player.list[selfId].hasUpgraded = true;
+  document.getElementsByClassName('upgradedetect')[0].style.display = 'none';
+    document.getElementsByClassName('upgradedetect')[1].style.display = 'none';
+    document.getElementsByClassName('upgradedetect')[2].style.display = 'none';
+    document.getElementsByClassName('upgradedetect')[3].style.display = 'none';
+  socket.emit('upgrade', {tank:'Twin'});
+};
+
+document.getElementsByClassName('upgradedetect')[3].onclick = function(){
+    Player.list[selfId].canUpgrade = false;
+    Player.list[selfId].hasUpgraded = true;
+    document.getElementsByClassName('upgradedetect')[0].style.display = 'none';
+    document.getElementsByClassName('upgradedetect')[1].style.display = 'none';
+    document.getElementsByClassName('upgradedetect')[2].style.display = 'none';
+  document.getElementsByClassName('upgradedetect')[3].style.display = 'none';
+  socket.emit('upgrade', {tank:'Sniper'});
+};
+
+document.getElementsByClassName('upgradedetect')[1].onclick = function(){
+    Player.list[selfId].canUpgrade = false;
+    Player.list[selfId].hasUpgraded = true;
+    document.getElementsByClassName('upgradedetect')[0].style.display = 'none';
+    document.getElementsByClassName('upgradedetect')[1].style.display = 'none';
+    document.getElementsByClassName('upgradedetect')[2].style.display = 'none';
+    document.getElementsByClassName('upgradedetect')[3].style.display = 'none';
+  socket.emit('upgrade', {tank:'MachineGun'});
+};
+
+document.getElementsByClassName('upgradedetect')[2].onclick = function(){
+    Player.list[selfId].canUpgrade = false;
+    Player.list[selfId].hasUpgraded = true;
+    document.getElementsByClassName('upgradedetect')[0].style.display = 'none';
+    document.getElementsByClassName('upgradedetect')[1].style.display = 'none';
+    document.getElementsByClassName('upgradedetect')[2].style.display = 'none';
+    document.getElementsByClassName('upgradedetect')[3].style.display = 'none';
+  socket.emit('upgrade', {tank:'Flank Guard'});
+};
+
+function randInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function param(name) {
+    return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+  }
+
+var par = param('s') == undefined ? 'ffa' : param('s');
+document.getElementById('server').value = par;
+
+var servers = {
+  ffa:{
+    name:'Free For All',
+    servers:['http://localhost:8000','http://localhost:8000']
+  }
+};
+
+var resulter;
+
+var servernum = randInt(1,servers[par].servers.length);
+var servername = par+1; // randInt(0,servers[param('s')].servers.length-1)]
+
+var socket = io.connect(servers[par].servers[servernum-1], {reconnect: false});
+
+  socket.on('disconnect', function(err) {
+    console.log(err)
+      var socket = function(){return io.connect(servers[par].servers[servernum-1], {reconnect: false})};
+  });
+  
+  document.getElementById('server').onchange = function(){
+    if (!(document.getElementById('server').value == 'select')) { 
+      window.open(`https://nyl-townsman1.c9users.io/?s=${document.getElementById('server').value}`,"_self");
+    }
+  };
+
+function calculateBarrelX(angle){
+    var  x_location = Math.cos(angle/180*Math.PI) * 15;
+    return x_location;
+}
+
+function calculateBarrelY(angle){
+      var y_location = Math.sin(angle/180*Math.PI) * 15;
+      return y_location;
+}
+
+function drawTank(x, y, angle, radius, color, barrels, bodyType) {
+                ctx.save();
+                ctx.translate(x, y);
+                ctx.rotate(degToRad(angle));
+                ctx.scale(radius / 48, radius / 48);
+                ctx.lineJoin = "round";
+                ctx.strokeStyle = "#555555";
+                ctx.fillStyle = "#999999";
+                ctx.lineWidth = 4 / (radius / 48);
+                for (var i = 0; i < barrels.length; i++) {
+                    if (barrels[i].barrelType == 0) {
+                        ctx.save();
+                        ctx.rotate(degToRad(barrels[i].angle));
+                        ctx.fillRect(0, (48 - barrels[i].width) - 48 + barrels[i].offsetX, barrels[i].length * 2, barrels[i].width * 2);
+                        ctx.strokeRect(0, (48 - barrels[i].width) - 48 + barrels[i].offsetX, barrels[i].length * 2, barrels[i].width * 2);
+                        ctx.restore();
+                    };
+
+                    if (barrels[i].barrelType == 1) {
+                        ctx.save();
+                        ctx.rotate(degToRad(barrels[i].angle));
+                        ctx.beginPath();
+                        ctx.moveTo(0, ((-1 * barrels[i].width) / 2) + barrels[i].offsetX);
+                        ctx.lineTo(barrels[i].length * 2, ((-1 * barrels[i].width * 2) / 2) + barrels[i].offsetX);
+                        ctx.lineTo(barrels[i].length * 2, ((barrels[i].width * 2) / 2) + barrels[i].offsetX);
+                        ctx.lineTo(0, ((barrels[i].width) / 2) + barrels[i].offsetX);
+                        ctx.lineTo(0, ((-1 * barrels[i].width) / 2) + barrels[i].offsetX);
+                        ctx.fill();
+                        ctx.stroke();
+                        ctx.closePath();
+                        ctx.restore();
+                    };
+                };
+                ctx.rotate(0);
+                ctx.lineWidth = 4 / (radius / 48);
+
+                if (bodyType == 0) {
+                    ctx.beginPath();
+                    ctx.arc(48 - 48, 48 - 48, 48, 0, 2 * Math.PI);
+                    ctx.fillStyle = color;
+                    ctx.fill();
+                    ctx.stroke();
+                    ctx.closePath();
+                    ctx.fillStyle = "#000000";
+                };
+                if (bodyType == 1) {
+                    ctx.fillStyle = color;
+
+                    ctx.fillRect(-1 * radius * 2, -1 * radius * 2, radius * 4, radius * 4);
+                    ctx.strokeRect(-1 * radius * 2, -1 * radius * 2, radius * 4, radius * 4);
+                };
+
+                ctx.restore();
+            };
+            
+            
+
+  var width = window.innerWidth;
+  var height = window.innerHeight;
+  
+  //sigin 
+
+  //var chooseTank = document.getElementById('choose-tank');
+  var gameDiv = document.getElementById('gameDiv');
+  var signDiv = document.getElementById('signDiv');
+  var signDivUsername = document.getElementById('signDiv-username');
+  var play = document.getElementById('play');
+
+document.getElementById('signDiv-username').onchange = function(){
+  ga('send', {hitType: 'event',
+        eventCategory: 'Title Screen',
+        eventAction: 'name-change',
+        eventLabel: `Changed name to '${document.getElementById('signDiv-username').value}'.`
+      }); 
+}
+  
+  var spin_angle = 0;
+  
+  play.onclick = function(){
+    //var tank_choice = chooseTank.options[chooseTank.selectedIndex].value;
+  /*if(signDivUsername.value != ''){
+    $.getJSON('//api.ipify.org?format=jsonp&callback=?', function(data) {
+      var ip = JSON.stringify(data.ip, null, 2);
+      socket.emit('signIn',{name:signDivUsername.value,address:ip,tank:"Tank",width:width,height:height});
+    }); */
+    
+
+      if(signDivUsername.value != ''){
+      var ip = 104024 * Math.random();
+      socket.emit('signIn',{name:signDivUsername.value,address:ip,tank:"Tank",width:width,height:height});
+   
+    
+  
+  
+    
+    /*global localStorage*/
+    localStorage.username = localStorage.username == undefined ? "" : document.getElementById("signDiv-username").value;
+    
+    ga('send', {hitType: 'event',
+      eventCategory: 'Title Screen',
+      eventAction: 'play',
+      eventLabel: 'Pressed play and joined game.'
+    });
+  } else{
+    alert('Please enter a name.');
+
+  }
+  }
+  
+window.onload=function(){
+  document.getElementById("signDiv-username").value = document.getElementById("signDiv-username").value == undefined ? "" : localStorage.username;
+};
+  
+  
+
+  socket.on('signInResponse',function(data){
+      if(data.success){
+        
+        signDiv.style.display = 'none';
+        gameDiv.style.display = 'inline-block';
+      } else 
+        alert("Unable to join. Please try again later.");
+        
+    
+    
+  });
+  
+    socket.on('signUpResponse',function(data){
+      if(data.success){
+        alert("Sign up successful!");
+      } else 
+        alert("Sign up unsuccessful!");
+    
+    });
+    
+    
+    socket.on('alert', function(data){
+});
+
+  socket.on('killNotification',function(data){
+  if(selfId){
+    Player.list[data.killer].notif_timer = 0;
+    Player.list[data.killer].killtext =  'You\'ve killed ' + data.killed  + '.';
+  }
+    
+  });
+  
+    //chat   
+    
+    /* global ga */
+  
+  var chatText = document.getElementById('chat-text');
+  var chatInput = document.getElementById('chat-input');
+  var chatForm = document.getElementById('chat-form');
+    socket.on('addToChat',function(data){
+      var usertype = data.dev ? 'developer' : data.trusted ? 'trusted user' : 'normal user';
+    if(data.server){
+      return
+    } else if (data.dev){
+      chatText.innerHTML += '<div style="color:#EF5058;">' + data.text + '</div>';
+    } else if (data.trusted){
+      chatText.innerHTML += '<div style="color:#7790F9;">' + data.text + '</div>';
+      } else {
+      chatText.innerHTML += '<div>' + data.text + '</div>';
+    }
+    chatText.scrollTop = chatText.scrollHeight;
+  
+  });
+
+    chatForm.onsubmit = function(e){
+      e.preventDefault();
+      socket.emit('sendMsgToServer',{
+        words:chatInput.value,
+        name:signDivUsername.value,
+      }
+        );
+      chatInput.value = '';
+      
+    }
+    
+  
+  
+  
+  //game
+  
+    var scoreboard_content = document.getElementById('scoreboard-content');
+    scoreboard_content.style.left = width-200;
+    var actual_leaders = document.getElementById('actual-leaders');
+    var sorted = [];
+    var changed_indexes = [];
+    var original_indexes = [];
+    var points = [];
+    var nicknames = [];
+    var scoreboard_list = {};
+    var selfId = null;
+
+     
+     var ctx = document.getElementById('ctx').getContext("2d");
+     var canvas = document.getElementById('ctx');
+     canvas.width = window.innerWidth;
+     canvas.height = window.innerHeight;
+      canvas.style.opacity = 0;
+     scoreboard_content.style.opacity = 0;
+     chatForm.style.opacity = 0;
+     chatInput.style.opacity = 0;
+     chatText.style.opacity = 0;
+     
+  
+
+//init 
+
+
+    function drawText(text,x,y) {
+        ctx.save();
+        ctx.lineWidth = 4;
+        ctx.textAlign = "center";
+        ctx.translate(x,y);
+        ctx.strokeStyle = "#333333";
+        ctx.strokeText(text,0,0,200);
+        ctx.fillStyle = "#ffffff";
+        ctx.fillText(text,0,0,200);
+        ctx.restore();
+    };
+
+function degToRad(deg){
+  return deg * (Math.PI/180);
+}
+
+function drawPolygon(x,y,angle,radius,color,sides) {
+    ctx.save();
+    ctx.fillStyle = color;
+    ctx.strokeStyle = "#555555";
+    ctx.lineJoin = "round";
+    ctx.beginPath();
+    var step = ((Math.PI * 2)/sides);
+    ctx.translate(x,y);
+    ctx.rotate(degToRad(angle));
+    ctx.moveTo(radius*2,0);
+    for (var i = 1; i < sides+2; i++) {
+        ctx.lineTo(2*radius*Math.cos(step*i),2*radius*Math.sin(step*i));
+    }
+    ctx.lineWidth = 4;
+    ctx.fill();
+    ctx.stroke();
+ 
+   
+    ctx.closePath();
+    ctx.restore();
+};
+
+var Shape = function(initPack) {
+  var self = {}
+  self.id = initPack.id;
+  self.x = initPack.x;
+  self.y = initPack.y; 
+  self.angle = initPack.angle;
+  self.name = initPack.name;
+  self.color = initPack.color;
+  self.colorname = initPack.colorname;
+  self.draw = function(){
+    
+    if(Math.abs(Player.list[selfId].x-self.x)>width/2+50 || Math.abs(Player.list[selfId].y-self.y)>height/2+50){
+      return;
+    }
+    
+     var x = self.x - Player.list[selfId].x + width/2;
+      var y = self.y - Player.list[selfId].y + height/2;
+      if (self.name ==='secret-shape1'){
+        drawPolygon(x+28, y+28,  self.angle, 17, self.color, 10);
+        drawPolygon(x+28, y+28,  self.angle, 15, self.color, 9);
+        drawPolygon(x+28, y+28,  self.angle, 13, self.color, 8);
+        drawPolygon(x+28, y+28,  self.angle, 11, self.color, 7);
+        drawPolygon(x+28, y+28,  self.angle, 9, self.color, 6);
+      }else{
+        if (self.name==='triangle'){
+        drawPolygon(x+28, y+28,  self.angle, 9, self.color, 3);/*ga('send', {hitType: 'event',
+        eventCategory: 'Render',
+        eventAction: 'polygon-render',
+        eventLabel: `Rendered a ${self.colorname} triangle at x ${self.x} and y ${self.y} (relative to player, x ${x} and y ${y}) with angle ${angle} and size ${9}.`
+      });*/
+        } else {
+          if (self.name==='alphapentagon'){
+            drawPolygon(x+28, y+28,  self.angle, 50, self.color, 5);/*ga('send', {hitType: 'event',
+        eventCategory: 'Render',
+        eventAction: 'polygon-render',
+        eventLabel: `Rendered a ${self.colorname} alpha pentagon at x ${self.x} and y ${self.y} (relative to player, x ${x} and y ${y}) with angle ${angle} and size ${50}.`
+      });*/
+          } else {
+            if (self.name==='pentagon'){
+        drawPolygon(x+28, y+28,  self.angle, 17, self.color, 5);
+        /*ga('send', {hitType: 'event',
+        eventCategory: 'Render',
+        eventAction: 'polygon-render',
+        eventLabel: `Rendered a ${self.colorname} pentagon at x ${self.x} and y ${self.y} (relative to player, x ${x} and y ${y}) with angle ${angle} and size ${17}.`
+      });*/
+            } else {
+              if (self.name==='square'){
+    drawTank(x+28, y+28, self.angle, 18.5, self.color, [], 1);
+ 
+      /*ga('send', {hitType: 'event',
+        eventCategory: 'Render',
+        eventAction: 'polygon-render',
+        eventLabel: `Rendered a ${self.colorname} square at x ${self.x} and y ${self.y} (relative to player, x ${x} and y ${y}) with angle ${angle} and size ${18.5}.`
+      });*/
+            }
+      }}}}
+  }  
+
+  
+    Shape.list[self.id] = self;
+    return self;
+  
+}
+
+
+Shape.list = {};
+
+
+  var Player = function(initPack){
+    var self = {};
+    self.canUpgrade = false;
+    self.hasUpgraded = false; 
+    self.notif_timer = 0;
+    self.killtext = '';
+    self.id = initPack.id;
+    self.number = initPack.number;
+    self.x = initPack.x;
+    self.y = initPack.y;
+    self.tank = initPack.tank;
+    self.hp = initPack.hp,
+    self.hpMax = initPack.hpMax,
+    self.score = initPack.score,
+    self.name = initPack.name,
+    self.mouseAngle = initPack.mouseAngle;
+    self.invisible = initPack.invisible;
+    self.team = initPack.team;
+    self.autospin = initPack.autospin;
+    self.angle = self.mouseAngle;
+    self.draw = function(angle,isPlayer){
+      
+      if(isPlayer){
+        self.angle = angle;
+      } else{
+        self.angle = self.mouseAngle;
+      }
+      
+      var x = self.x - Player.list[selfId].x + width/2;
+      var y = self.y - Player.list[selfId].y + height/2;
+      
+    
+    
+    var tcolor = {"red":"#F14E54","blue":"#1DB2DF","purple":"#BE83F2","green":"#24DF73"};
+    
+    
+  
+      //console.log('mouse loc: ' + self.mouseAngle);
+      //var x_loc = calculateBarrelX(self.mouseAngle);
+      //var y_loc = calculateBarrelY(self.mouseAngle);
+      //console.log(x_loc);
+      //console.log(y_loc);
+      ctx.fillStyle = 'black';
+      var hpWidth = 30 * self.hp/self.hpMax;
+      ctx.font = '30px Ubuntu';
+      //ctx.save();
+      //ctx.rotate();
+      if (!self.invisible){
+        var size = 25;// + parseInt(self.score)*1.25;
+        var score = self.score + 3
+        if (size > 32) {
+          var size = 32;
+        }
+        if (size < 25) {
+          var size = 25;
+        }
+        if (score > 3) {
+          var score = 3;
+        }//What are we doing? you do shapes, i do team hey can't target each other also for teas ok
+        var angle;
+         var tcolor = {"red":"#F14E54","blue":"#1DB2DF","purple":"#BE83F2","green":"#24DF73"};
+         if (self.team==="none"){
+           var color = self.id === selfId ? '#1DB2DF' : '#F14E54';
+         } else {
+           var color = tcolor[self.team];
+         };
+        if (self.tank === "Destroyer"){
+          drawTank(x+28, y+28, self.angle, size, color, [{barrelType:0,width:39,length:48,angle:0,offsetX:0}], 0);
+        } else {
+        if (self.tank === "Destroyer Flank"){
+          drawTank(x+28, y+28, self.angle, size, color, [{barrelType:0,width:39,length:48,angle:0,offsetX:0},{barrelType:0,width:39,length:44,angle:180,offsetX:0}], 0);
+        } else {
+        if (self.tank === "Hybrid"){
+          drawTank(x+28, y+28, self.angle, size, color, [{barrelType:0,width:39,length:48,angle:0,offsetX:0},{barrelType:1,width:39,length:37,angle:180,offsetX:0}], 0);
+        } else {
+        if (self.tank === "Flank Guard"){
+          drawTank(x+28, y+28, self.angle, size, color, [{barrelType:0,width:19,length:48,angle:0,offsetX:0},{barrelType:0,width:19,length:44,angle:180,offsetX:0}], 0);
+        } else {
+          if (self.tank === "Sniper"){
+            drawTank(x+28, y+28, self.angle, size, color, [{barrelType:0,width:19,length:58,angle:0,offsetX:0}], 0);
+        } else {
+          if (self.tank === "MachineGun"){
+            drawTank(x+28, y+28, self.angle, size, color, [{barrelType:1,width:37,length:42,angle:0,offsetX:0}], 0);
+          } else {
+            if (self.tank === "Streamliner"){
+              drawTank(x+28, y+28,  self.angle, size, color, [{barrelType:0,width:19,length:51,angle:0,offsetX:0},{barrelType:0,width:19,length:46,angle:0,offsetX:0},{barrelType:0,width:19,length:41,angle:0,offsetX:0},{barrelType:0,width:19,length:36,angle:0,offsetX:0},{barrelType:0,width:19,length:31,angle:0,offsetX:0}], 0);
+            } else {
+              if (self.tank === "Twin"){
+                drawTank(x+28, y+28,  self.angle, size, color, [{barrelType:0,width:19,length:48,angle:0,offsetX:25},{barrelType:0,width:19,length:48,angle:0,offsetX:-25}], 0);
+              } else {
+                if (self.tank === "Twin Flank"){
+                  drawTank(x+28, y+28,  self.angle, size, color, [{barrelType:0,width:19,length:48,angle:0,offsetX:25},{barrelType:0,width:19,length:48,angle:0,offsetX:-25},{barrelType:0,width:19,length:48,angle:180,offsetX:25},{barrelType:0,width:19,length:48,angle:180,offsetX:-25}], 0);
+                } else {
+                if (self.tank === "Quad Tank"){
+                  drawTank(x+28, y+28,  self.angle, size, color, [{barrelType:0,width:19,length:48,angle:0,offsetX:0},{barrelType:0,width:19,length:48,angle:90,offsetX:0},{barrelType:0,width:19,length:48,angle:180,offsetX:0},{barrelType:0,width:19,length:48,angle:270,offsetX:0}], 0);
+                } else {
+                if (self.tank === "Fighter"){
+                  drawTank(x+28, y+28,  self.angle, size, color, [{barrelType:0,width:19,length:48,angle:0,offsetX:0},{barrelType:0,width:19,length:48,angle:120,offsetX:0},{barrelType:0,width:19,length:48,angle:180,offsetX:0},{barrelType:0,width:19,length:48,angle:240,offsetX:0}], 0);
+                } else {
+                if (self.tank === "Triple Shot"){
+                  drawTank(x+28, y+28,  self.angle, size, color, [{barrelType:0,width:19,length:48,angle:-45,offsetX:0},{barrelType:0,width:19,length:48,angle:0,offsetX:0},{barrelType:0,width:19,length:48,angle:45,offsetX:0}], 0);
+                } else {
+                if (self.tank === "Horizon"){
+                  drawTank(x+28, y+28,  self.angle, size, color, [{barrelType:0,width:19,length:48,angle:22.5,offsetX:0},{barrelType:0,width:19,length:48,angle:-22.5,offsetX:0},{barrelType:0,width:19,length:48,angle:-45,offsetX:0},{barrelType:0,width:19,length:48,angle:0,offsetX:0},{barrelType:0,width:19,length:48,angle:45,offsetX:0}], 0);
+                } else {
+                if (self.tank === "Octo Tank"){
+                  drawTank(x+28, y+28, self.angle, size, color, [{barrelType:0,width:19,length:48,angle:0,offsetX:0},{barrelType:0,width:19,length:48,angle:90,offsetX:0},{barrelType:0,width:19,length:48,angle:180,offsetX:0},{barrelType:0,width:19,length:48,angle:270,offsetX:0},{barrelType:0,width:19,length:48,angle:45,offsetX:0},{barrelType:0,width:19,length:48,angle:135,offsetX:0},{barrelType:0,width:19,length:48,angle:225,offsetX:0},{barrelType:0,width:19,length:48,angle:315,offsetX:0}], 0);
+                } else {
+                  if (self.tank === "Arena Closer"){
+              drawTank(x+28, y+28,  self.angle, 60, '#FEE769', [{barrelType:0,width:16,length:37,angle:0,offsetX:0}], 0);
+                  } else {
+                    if (self.tank === "Latoonia Tank"){
+                    drawTank(x+28, y+28,  self.angle, size, color, [{barrelType:0,width:19,length:300,angle:0,offsetX:0}], 0);
+                    } else {
+            drawTank(x+28, y+28,  self.angle, size, color, [{barrelType:0,width:19,length:48,angle:0,offsetX:0}], 0);
+        }}}}}}}}}}}}}}}};
+      //    ctx.drawImage(Img.player,x,y,55,55);
+      //ctx.restore();
+      //ctx.fillStyle = 'gray';
+     // ctx.fillRect(x+x_loc+27.5/2,y+y_loc+27.5,30,4);
+     if (!(self.hp === self.hpMax)){
+      ctx.lineJoin = 'round';
+      ctx.fillStyle = '#555555';
+      ctx.fillRect(x+10.5,y+57,33,6);
+      ctx.fillStyle = '#86C680';
+      ctx.fillRect(x+12.5,y+58,hpWidth,4);
+     }
+      ctx.font = '20px Ubuntu';
+      ctx.fillStyle='darkgray'
+      ctx.fillText(self.name,x+(self.name.length*1.1),y-10);
+      ctx.font = '30px Ubuntu';
+      
+      }
+      };
+      
+    
+    
+    Player.list[self.id] = self;
+    return self;
+  }
+  var angle = 0;
+  var angle_pure  = 0;
+  var mouseX;
+  var mouseY;
+     $(document).mousemove(function(e){   
+    if(!selfId||Player.list[selfId].autospin)
+      return;
+      
+    var x = -width + e.pageX - 8;
+    var y = -height + e.pageY - 8;
+    
+    angle = Math.atan2(y,x) / (Math.PI * 180);
+ 
+    var boxCenter= [(width/2)+25/2, (height/2)+25/2];
+	  
+	  angle = Math.atan2(e.pageX- boxCenter[0],- (e.pageY- boxCenter[1]) )*(180/Math.PI);	
+	  angle_pure = Math.atan2(e.pageX- boxCenter[0],- (e.pageY- boxCenter[1])*(180/Math.PI) );
+	  angle = angle - 90;
+     
+	  
+	  if(Player.list[selfId].autospin){
+	    var mgpower = setInterval(function(){
+	      if(!Player.list[selfId].autospin) {
+	        clearInterval(mgpower);
+	      }
+	      angle++
+	    })
+	  }
+	  
+	  
+	  
+	  
+	  socket.emit('keyPress',{inputId:'mouseAngle',state:angle});
+	  
+   });
+  
+  Player.list = {};
+  
+  function drawGrid(x,y,width,height,slotSize,lineColor,xOffset,yOffset) {
+    ctx.save();
+    ctx.translate(x,y);
+    ctx.beginPath();
+    ctx.strokeColor = lineColor;
+    ctx.lineWidth = 2;
+   
+    for(var i = 0; i < width || i < height; i += slotSize) {
+        ctx.moveTo(0,i);
+        ctx.lineTo(width,i);
+        ctx.moveTo(i+(xOffset % slotSize),0);
+        ctx.lineTo(i+(xOffset % slotSize),height);
+    };
+    ctx.strokeStyle = lineColor;
+    ctx.stroke();
+    ctx.closePath();
+    ctx.restore();
+}
+
+function drawUpgrades(){
+    function drawUpgradeSlot(x,y,width,height,color,title){
+        ctx.save();
+        ctx.font = "bold 20px Ubuntu";
+        ctx.lineWidth = 5;
+        ctx.textAlign = "center";
+        ctx.strokeStyle = "#555555";
+        ctx.lineJoin = "round";
+        ctx.fillStyle = color;
+        ctx.fillRect(x,y,width,height);
+        ctx.fillStyle = "#000000";
+        ctx.globalAlpha = 0.2;
+        ctx.fillRect(x,y+(height/2),width,height/2);
+        ctx.globalAlpha = 1;
+        ctx.strokeRect(x,y,width,height);
+        drawText(title,x+(width/2),y+height-10);
+        ctx.restore();
+    };
+   
+   
+    if (Player.list[selfId].canUpgrade){   
+      ctx.globalAlpha = 0.9;
+    drawUpgradeSlot(10,10+50+30,128,128,"#8efffb","Twin");
+    ctx.globalAlpha = 1;
+    drawTank(10+128/2,50+30+128/2, spin_angle, 20, '#1DB2DF', [{barrelType:0,width:19,length:48,angle:0,offsetX:25},{barrelType:0,width:19,length:48,angle:0,offsetX:-25}], 0);
+     ctx.globalAlpha = 0.9;
+    drawUpgradeSlot(128+20,10+50+30,128,128,"#8aff69","Sniper");
+     ctx.globalAlpha = 1;
+    drawTank(128+10+10+128/2,50+30+128/2, spin_angle, 20, '#1DB2DF', [{barrelType:0,width:19,length:58,angle:0,offsetX:0}], 0);
+    ctx.globalAlpha = 0.9;
+    drawUpgradeSlot(10,128+20+50+30,128,128,"#f14e54","Machine Gun");
+    ctx.globalAlpha = 1;
+    drawTank(10+128/2,128+20+50+30+128/2, spin_angle, 20, '#1DB2DF', [{barrelType:1,width:37,length:42,angle:0,offsetX:0}], 0);
+    ctx.globalAlpha = 0.9;
+    drawUpgradeSlot(128+20,128+20+50+30,128,128,"#ffe869","Flank Guard");
+    ctx.globalAlpha = 1;
+    drawTank(128+10+10+128/2,128+20+50+30+128/2, spin_angle, 20, '#1DB2DF', [{barrelType:0,width:19,length:48,angle:0,offsetX:0},{barrelType:0,width:19,length:44,angle:180,offsetX:0}], 0);
+    /*drawUpgradeSlot(10,256+30+50,128,128,"#768dfc","Tank 5");
+    drawUpgradeSlot(128+20,256+30+50,128,128,"#bf7ff5","Tank 6");*/
+    //drawUpgradeSlot(128+15-45,256+100+30+90,90,30,"#aaaaaa","Ignore");
+    ctx.globalAlpha = 1;
+    ctx.font = "bold 30px Ubuntu";
+    drawText("Upgrades",128+10,25+30);
+    }
+   
+   
+};
+
+  
+  function drawCircle(x,y,radius,color,trap) {
+    if (trap == 'trap'){
+    var radius = 0;
+    ctx.save();
+    ctx.lineWidth = 4;
+    ctx.strokeStyle = "#555555";
+    ctx.fillStyle = color;
+    ctx.translate(x,y)
+    ctx.beginPath();
+    ctx.lineJoin = "round";
+    var hA = ((Math.PI * 2)/3);
+    ctx.moveTo(Math.cos(hA*hI)*radius,Math.sin(hA*hI)*radius);
+    for (var hI = 1; hI < 5; hI++) {
+       
+        ctx.lineTo(Math.cos(hA*hI)*radius,Math.sin(hA*hI)*radius);
+        ctx.lineTo(Math.cos((hA*hI)+(hA/2))*(radius/3.5),Math.sin((hA*hI)+(hA/2))*(radius/3.5));
+    };
+    ctx.fill();
+    ctx.stroke();
+ 
+    ctx.closePath();
+    ctx.restore();
+    } else {
+    ctx.save();
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.arc(x,y,radius,0,2*Math.PI);
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.strokeStyle = "#555555";
+    ctx.stroke();
+    ctx.closePath();
+    ctx.restore();
+}};
+
+/* global tcolor */
+  var Bullet = function(initPack){
+    var self = {};
+    self.id = initPack.id;
+    self.pid = initPack.parent_id;
+    self.x = initPack.x;
+    self.y = initPack.y;
+    if (Player.list[self.pid]){
+    self.parent_tank = Player.list[self.pid].tank;
+    }
+    self.type = initPack.type;
+    var color = self.parent_tank == 'Arena Closer' ? '#FEE769' : self.pid === selfId ? '#1DB2DF' : '#F14E54';
+    self.draw = function(){
+       var x = self.x - Player.list[selfId].x + width/2;
+      var y = self.y - Player.list[selfId].y + height/2;
+      if(self.parent_tank == 'Destroyer'||self.parent_tank == 'Destroyer Flank' || self.parent_tank == 'Hybrid'){
+      ctx.fillStyle = color;
+      drawCircle(x+28,y+28,20,self.type)
+      } else if (self.parent_tank == 'Arena Closer') {
+        ctx.fillStyle = color;
+        drawCircle(x+28,y+28,19,self.type)
+      
+      } else if (self.parent_tank == 'Streamliner') {
+        ctx.fillStyle = color;
+        drawCircle(x+28,y+28,8,self.type)
+        //ctx.drawImage(Img.bullet,self.x-5,self.y-5,15,15);
+        
+      }else {
+        ctx.fillStyle = color;
+        drawCircle(x+28,y+28,10,{"red":"F14E54"}.team,self.type)
+        //ctx.drawImage(Img.bullet,self.x-5,self.y-5,20,20);
+      }
+  
+  
+    }
+    Bullet.list[self.id] = self;
+    return self;
+  }
+  
+  Bullet.list = {};
+
+  
+  
+  socket.on('init', function(data){
+    if(data.selfId){
+      selfId = data.selfId;
+    }
+    
+    //console.log(data.player.length);
+    for (var i = 0; i < data.player.length; i++){
+      new Player(data.player[i]);
+    }
+    
+    for (var i = 0; i < data.bullet.length; i++){
+      new Bullet(data.bullet[i]);
+    }
+    
+    //console.log(data.shape.length);
+    for (var i = 0; i < data.shape.length; i++){
+      //console.log('adding shape');
+      new Shape(data.shape[i]);
+      //console.log('LIST LEN:' + Object.keys(Shape.list).length);
+    }
+    
+    
+    
+    
+  });
+  
+  //update
+  
+  /*socket.on('death',function(data){
+    if (selfId === data.id) {
+        signDiv.style.display = 'inline-block';
+        gameDiv.style.display = 'none';
+    }
+  })*/
+  
+  socket.on('update',function(data){
+        points = [];
+        nicknames = [];
+    for (var i = 0; i < data.player.length; i++){
+      var player_id = data.player[i].id;
+
+      var pack = data.player[i];
+      //console.log(pack);
+      var p = Player.list[pack.id]
+      player_id = Number(String(player_id).replace('0.',''));
+      points.push(data.player[i].score + '.' + player_id);
+      
+       if(p){
+      
+      scoreboard_list[player_id] = Player.list[p.id].name;
+      
+    
+      if(pack.tank){
+        p.tank = pack.tank;
+      }
+     
+       if (pack.mouseAngle !== undefined){
+         p.mouseAngle = pack.mouseAngle;
+       }
+       if (pack.upgraded != undefined)
+          p.hasUpgraded = pack.upgraded;
+        if (pack.x !== undefined)
+          p.x = pack.x;
+        if (pack.y !== undefined)
+          p.y = pack.y;
+        if (pack.hp !== undefined)
+          p.hp = pack.hp;
+        if (pack.score !== undefined)
+          p.score = pack.score;
+      }
+    }
+    
+
+     for (var i = 0; i < data.player.length; i++){
+      if(data.player[i].id == selfId){ 
+      var pack = data.shape[data.player[i].id];
+      for (var i = 0; i < pack.length; i++){
+      //console.log(pack[i].id);
+      //console.log(Shape.list);
+      var s = Shape.list[pack[i].id];
+      if(s){
+        if (pack[i].x !== undefined)
+          s.x = pack[i].x;
+        if (pack[i].y !== undefined)
+          s.y = pack[i].y;
+      }
+      
+      }
+      }
+    }
+    
+    for (var i = 0; i < data.bullet.length; i++){
+      var pack = data.bullet[i];
+      var b = Bullet.list[data.bullet[i].id];
+      if(b){
+        if (pack.x !== undefined)
+          b.x = pack.x;
+        if (pack.y !== undefined)
+          b.y = pack.y;
+      }
+    }
+
+  var to_show;
+  if(sorted.length>3){
+    to_show = 3;
+  } else{
+    to_show = sorted.length;
+  }
+
+  sorted = points.sort(function(a,b){return b-a});
+  var to_add_to_scoreboard = '';
+  for (var i = 0; i<to_show; i++){
+    var current_score = sorted[i];
+    var current_score_string = String(current_score);
+    var split = current_score_string.split('.');
+    var score_current = split[0];
+    var name_current = scoreboard_list[Number(split[1])];
+    to_add_to_scoreboard += name_current + ' - ' + score_current + '<br/><br/><br/><br/>';
+    
+    
+  }
+  
+  
+  actual_leaders.innerHTML = to_add_to_scoreboard;
+  
+  
+  });
+  
+  //remove 
+  
+  socket.on('remove',function(data){
+    for (var i=0;i<data.player.length;i++){
+      delete Player.list[data.player[i]];
+    }
+    
+    for (var i=0;i<data.bullet.length;i++){
+      delete Bullet.list[data.bullet[i]];
+    }
+    
+    for (var i=0;i<data.shape.length;i++){
+      delete Shape.list[data.shape[i]];
+    }
+    
+  });
+  
+  //drawing
+  
+var pastx;
+var pasty; 
+  
+  setInterval(function(){
+
+  if (Player.list[selfId]){
+     canvas.style.opacity = 1;
+     scoreboard_content.style.opacity = 1;
+     chatForm.style.opacity = 1;
+     chatInput.style.opacity = 1;
+     chatText.style.opacity = 1;
+     
+  if (Player.list[selfId].score > 20 && Player.list[selfId].hasUpgraded == false){
+    Player.list[selfId].canUpgrade = true;
+  document.getElementsByClassName('upgradedetect')[0].style.display = 'inline';
+  document.getElementsByClassName('upgradedetect')[1].style.display = 'inline';
+  document.getElementsByClassName('upgradedetect')[2].style.display = 'inline';
+  document.getElementsByClassName('upgradedetect')[3].style.display = 'inline';
+  }
+  }
+  if (spin_angle < 360){
+    spin_angle += 0.25;
+  } else{
+    spin_angle = 0;
+  }
+    if(!selfId)
+        return;
+    /*if (!(pastx == Player.list[selfId].x) || !(pasty == Player.list[selfId].y)){
+    }*/
+    ctx.clearRect(0,0,width,height);
+    ctx.fillStyle = '#CDCDCD';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle = '#B9B9B9';
+    drawGrid(width/2-Player.list[selfId].x,height/2-Player.list[selfId].y,1500,1500,24,"#C6C6C6",0,0);
+    pastx = Player.list[selfId].x;
+    pasty = Player.list[selfId].y;
+
+    for (var i in Shape.list){
+      Shape.list[i].draw();
+    }
+    for (var i in Bullet.list){
+      Bullet.list[i].draw();
+    }
+    for (var i in Player.list){
+      if (Player.list[i].id == selfId){
+      Player.list[i].draw(angle,true);
+      } else {
+        Player.list[i].draw(angle,false);
+      }
+      Player.list[i].notif_timer += 1;
+    }
+    drawUpgrades();
+   drawScore();
+    drawKills();
+    drawPlayerCount();
+     var x = 4500 - Player.list[selfId].x + width/2;
+     var y = 90 - Player.list[selfId].y + height/2;
+     ctx.fillStyle = 'white';
+      ctx.fillText('Welcome to /u/haykam821\'s secret area! Have some 0s or 1s. ' + Math.round(Math.random()) + " Have a great day. ;) Oh, and also, there's no damage in here," + Player.list[selfId].name + "! Stay as long as you'd like.",x,y);
+  },2);
+  
+  var plural;
+  
+  /* global servername */
+  
+  var drawPlayerCount = function(){
+    plural = Object.keys(Player.list).length == 1 ? '' : 's';
+    drawText((Object.keys(Player.list).length) + " player"+plural + ' on ' + servername,width-190,height-50)
+  };
+  
+  var drawKills = function(){
+    if(Player.list[selfId].notif_timer < 400) {
+      ctx.fillStyle = 'white';
+      ctx.fillText(Player.list[selfId].killtext,(width/2)-120,30);
+    } 
+  };
+  
+  
+  var drawScore = function(){
+    if (Player.list[selfId].score > 0){
+    ctx.fillStyle = 'white';
+    ctx.fillText('Score: ' + Player.list[selfId].score,width/2,height-30);
+    
+    }
+  }
+  
+  var drawScoreboard = function(){
+    ctx.fillStyle = 'white';
+    ctx.fillText('Scoreboard:',width-200,50);
+  }
+  
+      
+    document.onkeydown = function(event){
+      if (!(document.activeElement == document.getElementById('chat-input'))){
+      if(event.keyCode == 69) //e
+        socket.emit('keyPress',{inputId:'auto',state:true});
+      if(event.keyCode == 67) //c
+        socket.emit('keyPress',{inputId:'spin',state:true});
+      if(event.keyCode == 68 || event.keyCode == 39){ //d or right
+        socket.emit('keyPress',{inputId:'right',state:true});
+        //Player.list[i].x +=1;
+      } else if(event.keyCode == 83 || event.keyCode == 40) //s or down
+        socket.emit('keyPress',{inputId:'down',state:true});
+      else if(event.keyCode == 65 || event.keyCode == 37){ //a or left
+        socket.emit('keyPress',{inputId:'left',state:true});
+        //Player.list[i].x -= 1;
+        
+      }
+      else if(event.keyCode == 87 || event.keyCode == 38) //w or up
+        socket.emit('keyPress',{inputId:'up',state:true});
+    }};
+    
+    document.onkeyup = function(event){
+      if (!(document.activeElement == document.getElementById('chat-input'))){
+      if(event.keyCode == 68 || event.keyCode == 39){ //d or right
+        socket.emit('keyPress',{inputId:'right',state:false});Player.list[i].x+=1}
+      else if(event.keyCode == 83 || event.keyCode == 40) //s or down
+        socket.emit('keyPress',{inputId:'down',state:false});
+      else if(event.keyCode == 65 || event.keyCode == 37) //a or left
+        socket.emit('keyPress',{inputId:'left',state:false});
+      else if(event.keyCode == 87 || event.keyCode == 38) //w or up
+        socket.emit('keyPress',{inputId:'up',state:false});
+      else if(event.keyCode == 187) //=
+        socket.emit('keyPress',{inputId:'inc',state:false});
+      else if(event.keyCode == 189) //-
+        socket.emit('keyPress',{inputId:'dec',state:false});
+    }};
+    
+  
+    //window.onscroll = function () { window.scrollTo(0, 0); };
+    
+    
+    
+    
+    
+    document.onmousedown = function(event){
+      if (signDiv.style.display == 'none'){
+      socket.emit('keyPress',{inputId:'attack', state:true});
+    }
+    }
+    
+    
+    document.onmouseup = function(event){
+      socket.emit('keyPress',{inputId:'attack', state:false});
+    }
+    
+    
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    // randomColor by David Merfield under the CC0 license
+// https://github.com/davidmerfield/randomColor/
+
+;(function(root, factory) {
+
+  // Support AMD
+  if (typeof define === 'function' && define.amd) {
+    define([], factory);
+
+  // Support CommonJS
+  } else if (typeof exports === 'object') {
+    var randomColor = factory();
+
+    // Support NodeJS & Component, which allow module.exports to be a function
+    if (typeof module === 'object' && module && module.exports) {
+      exports = module.exports = randomColor;
+    }
+
+    // Support CommonJS 1.1.1 spec
+    exports.randomColor = randomColor;
+
+  // Support vanilla script loading
+  } else {
+    root.randomColor = factory();
+  }
+
+}(this, function() {
+
+  // Seed to get repeatable colors
+  var seed = null;
+
+  // Shared color dictionary
+  var colorDictionary = {};
+
+  // Populate the color dictionary
+  loadColorBounds();
+
+  var randomColor = function (options) {
+
+    options = options || {};
+
+    // Check if there is a seed and ensure it's an
+    // integer. Otherwise, reset the seed value.
+    if (options.seed !== undefined && options.seed !== null && options.seed === parseInt(options.seed, 10)) {
+      seed = options.seed;
+
+    // A string was passed as a seed
+    } else if (typeof options.seed === 'string') {
+      seed = stringToInteger(options.seed);
+
+    // Something was passed as a seed but it wasn't an integer or string
+    } else if (options.seed !== undefined && options.seed !== null) {
+      throw new TypeError('The seed value must be an integer or string');
+
+    // No seed, reset the value outside.
+    } else {
+      seed = null;
+    }
+
+    var H,S,B;
+
+    // Check if we need to generate multiple colors
+    if (options.count !== null && options.count !== undefined) {
+
+      var totalColors = options.count,
+          colors = [];
+
+      options.count = null;
+
+      while (totalColors > colors.length) {
+
+        // Since we're generating multiple colors,
+        // incremement the seed. Otherwise we'd just
+        // generate the same color each time...
+        if (seed && options.seed) options.seed += 1;
+
+        colors.push(randomColor(options));
+      }
+
+      options.count = totalColors;
+
+      return colors;
+    }
+
+    // First we pick a hue (H)
+    H = pickHue(options);
+
+    // Then use H to determine saturation (S)
+    S = pickSaturation(H, options);
+
+    // Then use S and H to determine brightness (B).
+    B = pickBrightness(H, S, options);
+
+    // Then we return the HSB color in the desired format
+    return setFormat([H,S,B], options);
+  };
+
+  function pickHue (options) {
+
+    var hueRange = getHueRange(options.hue),
+        hue = randomWithin(hueRange);
+
+    // Instead of storing red as two seperate ranges,
+    // we group them, using negative numbers
+    if (hue < 0) {hue = 360 + hue;}
+
+    return hue;
+
+  }
+
+  function pickSaturation (hue, options) {
+
+    if (options.luminosity === 'random') {
+      return randomWithin([0,100]);
+    }
+
+    if (options.hue === 'monochrome') {
+      return 0;
+    }
+
+    var saturationRange = getSaturationRange(hue);
+
+    var sMin = saturationRange[0],
+        sMax = saturationRange[1];
+
+    switch (options.luminosity) {
+
+      case 'bright':
+        sMin = 55;
+        break;
+
+      case 'dark':
+        sMin = sMax - 10;
+        break;
+
+      case 'light':
+        sMax = 55;
+        break;
+   }
+
+    return randomWithin([sMin, sMax]);
+
+  }
+
+  function pickBrightness (H, S, options) {
+
+    var bMin = getMinimumBrightness(H, S),
+        bMax = 100;
+
+    switch (options.luminosity) {
+
+      case 'dark':
+        bMax = bMin + 20;
+        break;
+
+      case 'light':
+        bMin = (bMax + bMin)/2;
+        break;
+
+      case 'random':
+        bMin = 0;
+        bMax = 100;
+        break;
+    }
+
+    return randomWithin([bMin, bMax]);
+  }
+
+  function setFormat (hsv, options) {
+
+    switch (options.format) {
+
+      case 'hsvArray':
+        return hsv;
+
+      case 'hslArray':
+        return HSVtoHSL(hsv);
+
+      case 'hsl':
+        var hsl = HSVtoHSL(hsv);
+        return 'hsl('+hsl[0]+', '+hsl[1]+'%, '+hsl[2]+'%)';
+
+      case 'hsla':
+        var hslColor = HSVtoHSL(hsv);
+        var alpha = options.alpha || Math.random();
+        return 'hsla('+hslColor[0]+', '+hslColor[1]+'%, '+hslColor[2]+'%, ' + alpha + ')';
+
+      case 'rgbArray':
+        return HSVtoRGB(hsv);
+
+      case 'rgb':
+        var rgb = HSVtoRGB(hsv);
+        return 'rgb(' + rgb.join(', ') + ')';
+
+      case 'rgba':
+        var rgbColor = HSVtoRGB(hsv);
+        var alpha = options.alpha || Math.random();
+        return 'rgba(' + rgbColor.join(', ') + ', ' + alpha + ')';
+
+      default:
+        return HSVtoHex(hsv);
+    }
+
+  }
+
+  function getMinimumBrightness(H, S) {
+
+    var lowerBounds = getColorInfo(H).lowerBounds;
+
+    for (var i = 0; i < lowerBounds.length - 1; i++) {
+
+      var s1 = lowerBounds[i][0],
+          v1 = lowerBounds[i][1];
+
+      var s2 = lowerBounds[i+1][0],
+          v2 = lowerBounds[i+1][1];
+
+      if (S >= s1 && S <= s2) {
+
+         var m = (v2 - v1)/(s2 - s1),
+             b = v1 - m*s1;
+
+         return m*S + b;
+      }
+
+    }
+
+    return 0;
+  }
+
+  function getHueRange (colorInput) {
+
+    if (typeof parseInt(colorInput) === 'number') {
+
+      var number = parseInt(colorInput);
+
+      if (number < 360 && number > 0) {
+        return [number, number];
+      }
+
+    }
+
+    if (typeof colorInput === 'string') {
+
+      if (colorDictionary[colorInput]) {
+        var color = colorDictionary[colorInput];
+        if (color.hueRange) {return color.hueRange;}
+      }
+    }
+
+    return [0,360];
+
+  }
+
+  function getSaturationRange (hue) {
+    return getColorInfo(hue).saturationRange;
+  }
+
+  function getColorInfo (hue) {
+
+    // Maps red colors to make picking hue easier
+    if (hue >= 334 && hue <= 360) {
+      hue-= 360;
+    }
+
+    for (var colorName in colorDictionary) {
+       var color = colorDictionary[colorName];
+       if (color.hueRange &&
+           hue >= color.hueRange[0] &&
+           hue <= color.hueRange[1]) {
+          return colorDictionary[colorName];
+       }
+    } return 'Color not found';
+  }
+
+  function randomWithin (range) {
+    if (seed === null) {
+      return Math.floor(range[0] + Math.random()*(range[1] + 1 - range[0]));
+    } else {
+      //Seeded random algorithm from http://indiegamr.com/generate-repeatable-random-numbers-in-js/
+      var max = range[1] || 1;
+      var min = range[0] || 0;
+      seed = (seed * 9301 + 49297) % 233280;
+      var rnd = seed / 233280.0;
+      return Math.floor(min + rnd * (max - min));
+    }
+  }
+
+  function HSVtoHex (hsv){
+
+    var rgb = HSVtoRGB(hsv);
+
+    function componentToHex(c) {
+        var hex = c.toString(16);
+        return hex.length == 1 ? '0' + hex : hex;
+    }
+
+    var hex = '#' + componentToHex(rgb[0]) + componentToHex(rgb[1]) + componentToHex(rgb[2]);
+
+    return hex;
+
+  }
+
+  function defineColor (name, hueRange, lowerBounds) {
+
+    var sMin = lowerBounds[0][0],
+        sMax = lowerBounds[lowerBounds.length - 1][0],
+
+        bMin = lowerBounds[lowerBounds.length - 1][1],
+        bMax = lowerBounds[0][1];
+
+    colorDictionary[name] = {
+      hueRange: hueRange,
+      lowerBounds: lowerBounds,
+      saturationRange: [sMin, sMax],
+      brightnessRange: [bMin, bMax]
+    };
+
+  }
+
+  function loadColorBounds () {
+
+    defineColor(
+      'monochrome',
+      null,
+      [[0,0],[100,0]]
+    );
+
+    defineColor(
+      'red',
+      [-26,18],
+      [[20,100],[30,92],[40,89],[50,85],[60,78],[70,70],[80,60],[90,55],[100,50]]
+    );
+
+    defineColor(
+      'orange',
+      [19,46],
+      [[20,100],[30,93],[40,88],[50,86],[60,85],[70,70],[100,70]]
+    );
+
+    defineColor(
+      'yellow',
+      [47,62],
+      [[25,100],[40,94],[50,89],[60,86],[70,84],[80,82],[90,80],[100,75]]
+    );
+
+    defineColor(
+      'green',
+      [63,178],
+      [[30,100],[40,90],[50,85],[60,81],[70,74],[80,64],[90,50],[100,40]]
+    );
+
+    defineColor(
+      'blue',
+      [179, 257],
+      [[20,100],[30,86],[40,80],[50,74],[60,60],[70,52],[80,44],[90,39],[100,35]]
+    );
+
+    defineColor(
+      'purple',
+      [258, 282],
+      [[20,100],[30,87],[40,79],[50,70],[60,65],[70,59],[80,52],[90,45],[100,42]]
+    );
+
+    defineColor(
+      'pink',
+      [283, 334],
+      [[20,100],[30,90],[40,86],[60,84],[80,80],[90,75],[100,73]]
+    );
+
+  }
+
+  function HSVtoRGB (hsv) {
+
+    // this doesn't work for the values of 0 and 360
+    // here's the hacky fix
+    var h = hsv[0];
+    if (h === 0) {h = 1;}
+    if (h === 360) {h = 359;}
+
+    // Rebase the h,s,v values
+    h = h/360;
+    var s = hsv[1]/100,
+        v = hsv[2]/100;
+
+    var h_i = Math.floor(h*6),
+      f = h * 6 - h_i,
+      p = v * (1 - s),
+      q = v * (1 - f*s),
+      t = v * (1 - (1 - f)*s),
+      r = 256,
+      g = 256,
+      b = 256;
+
+    switch(h_i) {
+      case 0: r = v; g = t; b = p;  break;
+      case 1: r = q; g = v; b = p;  break;
+      case 2: r = p; g = v; b = t;  break;
+      case 3: r = p; g = q; b = v;  break;
+      case 4: r = t; g = p; b = v;  break;
+      case 5: r = v; g = p; b = q;  break;
+    }
+
+    var result = [Math.floor(r*255), Math.floor(g*255), Math.floor(b*255)];
+    return result;
+  }
+
+  function HSVtoHSL (hsv) {
+    var h = hsv[0],
+      s = hsv[1]/100,
+      v = hsv[2]/100,
+      k = (2-s)*v;
+
+    return [
+      h,
+      Math.round(s*v / (k<1 ? k : 2-k) * 10000) / 100,
+      k/2 * 100
+    ];
+  }
+
+  function stringToInteger (string) {
+    var total = 0
+    for (var i = 0; i !== string.length; i++) {
+      if (total >= Number.MAX_SAFE_INTEGER) break;
+      total += string.charCodeAt(i)
+    }
+    return total
+  }
+
+  return randomColor;
+}));
+
+
+
+
+</script>
+
+<script
+  src="https://code.jquery.com/jquery-3.1.1.js"
+  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+  crossorigin="anonymous"></script>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+
+    
+    
+
+<script>/**
+ * bootbox.js v4.4.0
+ *
+ * http://bootboxjs.com/license.txt
+ */
+!function(a,b){"use strict";"function"==typeof define&&define.amd?define(["jquery"],b):"object"==typeof exports?module.exports=b(require("jquery")):a.bootbox=b(a.jQuery)}(this,function a(b,c){"use strict";function d(a){var b=q[o.locale];return b?b[a]:q.en[a]}function e(a,c,d){a.stopPropagation(),a.preventDefault();var e=b.isFunction(d)&&d.call(c,a)===!1;e||c.modal("hide")}function f(a){var b,c=0;for(b in a)c++;return c}function g(a,c){var d=0;b.each(a,function(a,b){c(a,b,d++)})}function h(a){var c,d;if("object"!=typeof a)throw new Error("Please supply an object of options");if(!a.message)throw new Error("Please specify a message");return a=b.extend({},o,a),a.buttons||(a.buttons={}),c=a.buttons,d=f(c),g(c,function(a,e,f){if(b.isFunction(e)&&(e=c[a]={callback:e}),"object"!==b.type(e))throw new Error("button with key "+a+" must be an object");e.label||(e.label=a),e.className||(e.className=2>=d&&f===d-1?"btn-primary":"btn-default")}),a}function i(a,b){var c=a.length,d={};if(1>c||c>2)throw new Error("Invalid argument length");return 2===c||"string"==typeof a[0]?(d[b[0]]=a[0],d[b[1]]=a[1]):d=a[0],d}function j(a,c,d){return b.extend(!0,{},a,i(c,d))}function k(a,b,c,d){var e={className:"bootbox-"+a,buttons:l.apply(null,b)};return m(j(e,d,c),b)}function l(){for(var a={},b=0,c=arguments.length;c>b;b++){var e=arguments[b],f=e.toLowerCase(),g=e.toUpperCase();a[f]={label:d(g)}}return a}function m(a,b){var d={};return g(b,function(a,b){d[b]=!0}),g(a.buttons,function(a){if(d[a]===c)throw new Error("button key "+a+" is not allowed (options are "+b.join("\n")+")")}),a}var n={dialog:"<div class='bootbox modal' tabindex='-1' role='dialog'><div class='modal-dialog'><div class='modal-content'><div class='modal-body'><div class='bootbox-body'></div></div></div></div></div>",header:"<div class='modal-header'><h4 class='modal-title'></h4></div>",footer:"<div class='modal-footer'></div>",closeButton:"<button type='button' class='bootbox-close-button close' data-dismiss='modal' aria-hidden='true'>&times;</button>",form:"<form class='bootbox-form'></form>",inputs:{text:"<input class='bootbox-input bootbox-input-text form-control' autocomplete=off type=text />",textarea:"<textarea class='bootbox-input bootbox-input-textarea form-control'></textarea>",email:"<input class='bootbox-input bootbox-input-email form-control' autocomplete='off' type='email' />",select:"<select class='bootbox-input bootbox-input-select form-control'></select>",checkbox:"<div class='checkbox'><label><input class='bootbox-input bootbox-input-checkbox' type='checkbox' /></label></div>",date:"<input class='bootbox-input bootbox-input-date form-control' autocomplete=off type='date' />",time:"<input class='bootbox-input bootbox-input-time form-control' autocomplete=off type='time' />",number:"<input class='bootbox-input bootbox-input-number form-control' autocomplete=off type='number' />",password:"<input class='bootbox-input bootbox-input-password form-control' autocomplete='off' type='password' />"}},o={locale:"en",backdrop:"static",animate:!0,className:null,closeButton:!0,show:!0,container:"body"},p={};p.alert=function(){var a;if(a=k("alert",["ok"],["message","callback"],arguments),a.callback&&!b.isFunction(a.callback))throw new Error("alert requires callback property to be a function when provided");return a.buttons.ok.callback=a.onEscape=function(){return b.isFunction(a.callback)?a.callback.call(this):!0},p.dialog(a)},p.confirm=function(){var a;if(a=k("confirm",["cancel","confirm"],["message","callback"],arguments),a.buttons.cancel.callback=a.onEscape=function(){return a.callback.call(this,!1)},a.buttons.confirm.callback=function(){return a.callback.call(this,!0)},!b.isFunction(a.callback))throw new Error("confirm requires a callback");return p.dialog(a)},p.prompt=function(){var a,d,e,f,h,i,k;if(f=b(n.form),d={className:"bootbox-prompt",buttons:l("cancel","confirm"),value:"",inputType:"text"},a=m(j(d,arguments,["title","callback"]),["cancel","confirm"]),i=a.show===c?!0:a.show,a.message=f,a.buttons.cancel.callback=a.onEscape=function(){return a.callback.call(this,null)},a.buttons.confirm.callback=function(){var c;switch(a.inputType){case"text":case"textarea":case"email":case"select":case"date":case"time":case"number":case"password":c=h.val();break;case"checkbox":var d=h.find("input:checked");c=[],g(d,function(a,d){c.push(b(d).val())})}return a.callback.call(this,c)},a.show=!1,!a.title)throw new Error("prompt requires a title");if(!b.isFunction(a.callback))throw new Error("prompt requires a callback");if(!n.inputs[a.inputType])throw new Error("invalid prompt type");switch(h=b(n.inputs[a.inputType]),a.inputType){case"text":case"textarea":case"email":case"date":case"time":case"number":case"password":h.val(a.value);break;case"select":var o={};if(k=a.inputOptions||[],!b.isArray(k))throw new Error("Please pass an array of input options");if(!k.length)throw new Error("prompt with select requires options");g(k,function(a,d){var e=h;if(d.value===c||d.text===c)throw new Error("given options in wrong format");d.group&&(o[d.group]||(o[d.group]=b("<optgroup/>").attr("label",d.group)),e=o[d.group]),e.append("<option value='"+d.value+"'>"+d.text+"</option>")}),g(o,function(a,b){h.append(b)}),h.val(a.value);break;case"checkbox":var q=b.isArray(a.value)?a.value:[a.value];if(k=a.inputOptions||[],!k.length)throw new Error("prompt with checkbox requires options");if(!k[0].value||!k[0].text)throw new Error("given options in wrong format");h=b("<div/>"),g(k,function(c,d){var e=b(n.inputs[a.inputType]);e.find("input").attr("value",d.value),e.find("label").append(d.text),g(q,function(a,b){b===d.value&&e.find("input").prop("checked",!0)}),h.append(e)})}return a.placeholder&&h.attr("placeholder",a.placeholder),a.pattern&&h.attr("pattern",a.pattern),a.maxlength&&h.attr("maxlength",a.maxlength),f.append(h),f.on("submit",function(a){a.preventDefault(),a.stopPropagation(),e.find(".btn-primary").click()}),e=p.dialog(a),e.off("shown.bs.modal"),e.on("shown.bs.modal",function(){h.focus()}),i===!0&&e.modal("show"),e},p.dialog=function(a){a=h(a);var d=b(n.dialog),f=d.find(".modal-dialog"),i=d.find(".modal-body"),j=a.buttons,k="",l={onEscape:a.onEscape};if(b.fn.modal===c)throw new Error("$.fn.modal is not defined; please double check you have included the Bootstrap JavaScript library. See http://getbootstrap.com/javascript/ for more details.");if(g(j,function(a,b){k+="<button data-bb-handler='"+a+"' type='button' class='btn "+b.className+"'>"+b.label+"</button>",l[a]=b.callback}),i.find(".bootbox-body").html(a.message),a.animate===!0&&d.addClass("fade"),a.className&&d.addClass(a.className),"large"===a.size?f.addClass("modal-lg"):"small"===a.size&&f.addClass("modal-sm"),a.title&&i.before(n.header),a.closeButton){var m=b(n.closeButton);a.title?d.find(".modal-header").prepend(m):m.css("margin-top","-10px").prependTo(i)}return a.title&&d.find(".modal-title").html(a.title),k.length&&(i.after(n.footer),d.find(".modal-footer").html(k)),d.on("hidden.bs.modal",function(a){a.target===this&&d.remove()}),d.on("shown.bs.modal",function(){d.find(".btn-primary:first").focus()}),"static"!==a.backdrop&&d.on("click.dismiss.bs.modal",function(a){d.children(".modal-backdrop").length&&(a.currentTarget=d.children(".modal-backdrop").get(0)),a.target===a.currentTarget&&d.trigger("escape.close.bb")}),d.on("escape.close.bb",function(a){l.onEscape&&e(a,d,l.onEscape)}),d.on("click",".modal-footer button",function(a){var c=b(this).data("bb-handler");e(a,d,l[c])}),d.on("click",".bootbox-close-button",function(a){e(a,d,l.onEscape)}),d.on("keyup",function(a){27===a.which&&d.trigger("escape.close.bb")}),b(a.container).append(d),d.modal({backdrop:a.backdrop?"static":!1,keyboard:!1,show:!1}),a.show&&d.modal("show"),d},p.setDefaults=function(){var a={};2===arguments.length?a[arguments[0]]=arguments[1]:a=arguments[0],b.extend(o,a)},p.hideAll=function(){return b(".bootbox").modal("hide"),p};var q={bg_BG:{OK:"Ок",CANCEL:"Отказ",CONFIRM:"Потвърждавам"},br:{OK:"OK",CANCEL:"Cancelar",CONFIRM:"Sim"},cs:{OK:"OK",CANCEL:"Zrušit",CONFIRM:"Potvrdit"},da:{OK:"OK",CANCEL:"Annuller",CONFIRM:"Accepter"},de:{OK:"OK",CANCEL:"Abbrechen",CONFIRM:"Akzeptieren"},el:{OK:"Εντάξει",CANCEL:"Ακύρωση",CONFIRM:"Επιβεβαίωση"},en:{OK:"OK",CANCEL:"Cancel",CONFIRM:"OK"},es:{OK:"OK",CANCEL:"Cancelar",CONFIRM:"Aceptar"},et:{OK:"OK",CANCEL:"Katkesta",CONFIRM:"OK"},fa:{OK:"قبول",CANCEL:"لغو",CONFIRM:"����ایید"},fi:{OK:"OK",CANCEL:"Peruuta",CONFIRM:"OK"},fr:{OK:"OK",CANCEL:"Annuler",CONFIRM:"D'accord"},he:{OK:"אישור",CANCEL:"ביטול",CONFIRM:"אישור"},hu:{OK:"OK",CANCEL:"Mégsem",CONFIRM:"Megerősít"},hr:{OK:"OK",CANCEL:"Odustani",CONFIRM:"Potvrdi"},id:{OK:"OK",CANCEL:"Batal",CONFIRM:"OK"},it:{OK:"OK",CANCEL:"Annulla",CONFIRM:"Conferma"},ja:{OK:"OK",CANCEL:"キャンセル",CONFIRM:"確認"},lt:{OK:"Gerai",CANCEL:"Atšaukti",CONFIRM:"Patvirtinti"},lv:{OK:"Labi",CANCEL:"Atcelt",CONFIRM:"Apstiprināt"},nl:{OK:"OK",CANCEL:"Annuleren",CONFIRM:"Accepteren"},no:{OK:"OK",CANCEL:"Avbryt",CONFIRM:"OK"},pl:{OK:"OK",CANCEL:"Anuluj",CONFIRM:"Potwierdź"},pt:{OK:"OK",CANCEL:"Cancelar",CONFIRM:"Confirmar"},ru:{OK:"OK",CANCEL:"Отмена",CONFIRM:"Применить"},sq:{OK:"OK",CANCEL:"Anulo",CONFIRM:"Prano"},sv:{OK:"OK",CANCEL:"Avbryt",CONFIRM:"OK"},th:{OK:"ตกลง",CANCEL:"ยกเลิก",CONFIRM:"ยืนยัน"},tr:{OK:"Tamam",CANCEL:"İptal",CONFIRM:"Onayla"},zh_CN:{OK:"OK",CANCEL:"取消",CONFIRM:"确认"},zh_TW:{OK:"OK",CANCEL:"取消",CONFIRM:"確認"}};return p.addLocale=function(a,c){return b.each(["OK","CANCEL","CONFIRM"],function(a,b){if(!c[b])throw new Error("Please supply a translation for '"+b+"'")}),q[a]={OK:c.OK,CANCEL:c.CANCEL,CONFIRM:c.CONFIRM},p},p.removeLocale=function(a){return delete q[a],p},p.setLocale=function(a){return p.setDefaults("locale",a)},p.init=function(c){return a(c||b)},p});
+</script>
+
+ <script>
+
+$('#changelog').click(function(){
+    
+    bootbox.alert({
+    message:"<center><b>Changelog</b></center><ul style='font-family:monospaced;white-space:initial;'> <li>December 29, 2016</li> <ul><li>Added shapes</li> <li>Larger arena</li> <li>Improved motion/graphics</li> <li>Camera focus</li> </ul> <li>December 28, 2016: <ul> <li>More classes</li> <ul> <li>Update home page</li> <li>Machine Gun class with higher reload</li><li>Unsniper class with shorter lasting bullets</li> </ul></u/> </ul><ul><li>The devs are the only devs. Beware of imposters.</li> </ul></ul>",
+    backdrop:true
+    });
+});
+
+        
+</script>
+<script>
+
+</script>Itp nt
